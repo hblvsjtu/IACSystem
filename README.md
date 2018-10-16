@@ -4,7 +4,7 @@
 
 ## Server setup
 ```
-cd '当前目录'
+cd jliacapp
 node httpServer.js
 ```
 
