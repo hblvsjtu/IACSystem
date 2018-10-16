@@ -1,0 +1,83 @@
+.login {
+	.loginButton {
+		text-align: center;
+		margin-top: 20px;
+	}
+	.text {
+		cursor: pointer;
+		width: 100px;
+	    height: 30px;
+	    line-height: 30px;
+	    margin: 5px 30px;
+	    padding: 5px 30px;
+	    font-size: 26px;
+	    background: lightblue;
+	    border-radius: 5px;
+	}
+    .hideButton {
+    	display: none;
+    }
+	.shadow {
+		position: fixed;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    background: rgba(0,0,0,0.5);
+	    z-index: 1;
+	    ul {
+	    	position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    width: 400px;
+		    background: yellow;
+		    border-radius: 5px;
+		    transform: translate(-200px, -50%);
+	    }
+	    li {
+	    	margin: 10px;
+	    }
+	    span, input {
+	    	display: inline-block;
+    	    width: 150px;
+    	    font-size: 20px;
+    	    line-height: 1.2;
+    	    margin-top: 5px;
+    	    text-align: left;
+	    }
+	    input {
+	    	width: 200px;
+	    	border-radius: 5px;
+	    }
+	    label {
+	    	cursor: pointer;
+			width: 100px;
+		    height: 30px;
+		    line-height: 30px;
+		    margin: 5px 30px;
+		    padding: 5px 30px;
+		    font-size: 20px;
+		    background: lightblue;
+		    border-radius: 5px;
+	    }
+	}
+	.loginInSuccess {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 200px;
+		height: 40px;
+		span {
+			font-size: 16px;
+			font-weight: bolder;
+		}
+		.logout {
+			margin: 0;
+			padding: 0;
+		    background: none;
+		    font-size: 16px;
+		    font-weight: bolder;
+		    color: red;
+		}
+	}
+}
