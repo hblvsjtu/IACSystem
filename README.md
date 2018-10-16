@@ -13,6 +13,11 @@ cd jliacapp
 node ./server/httpServer.js
 ```
 
+## open URL
+```
+http://localhost:8080/index.html
+```
+
 ## Project setup
 ```
 npm install
