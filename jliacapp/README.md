@@ -1,8 +1,13 @@
 # jliacapp
 
+## Login for test
+```
+username: lvhongbin
+passward: 12345687
+```
 ## Server setup
 ```
-cd '当前目录'
+cd jliacapp
 node httpServer.js
 ```
 
