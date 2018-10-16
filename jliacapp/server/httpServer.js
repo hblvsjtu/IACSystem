@@ -9,6 +9,13 @@
 const http = require('http');
 const fs = require('fs');
 var httpServerTool = require('./httpServerTool.js');
+const MongoClient = require('mongodb').MongoClient;
+
+ // Connection URL
+ const mongodbURL = 'mongodb://localhost:27017';
+
+ // Database Name
+ const dbName = 'myproject';
 
 //创建http server
 const server = http.createServer((req, res) => {
@@ -75,12 +82,20 @@ const server = http.createServer((req, res) => {
                 });
             }
 
-            // 运行python程序，
-            // 第一个参数是python文件的全路径；
-            // 第二个参数及后面所有的参数都是python的参数
-            console.log('执行python文件前');
-		    httpServerTool.runPython(res, readResult, './server/python/test.py', JSON.stringify(paramObj));
-            console.log('执行python文件后');
+            // 加上{flag: 'a'}变成追加模式
+            fs.writeFile('./server/input/input.txt', chunks.toString(), function (err) {
+               if(err) {
+                console.error(err);
+                } else {
+                   console.log('写入成功');
+                    // 运行python程序，
+                    // 第一个参数是python文件的全路径；
+                    // 第二个参数及后面所有的参数都是python的参数
+                    console.log('执行python文件前');
+                    httpServerTool.runPython(res, readResult, './server/python/test.py', JSON.stringify(paramObj));
+                    console.log('执行python文件后');
+                }
+            });
 	    });
     }
     else {
