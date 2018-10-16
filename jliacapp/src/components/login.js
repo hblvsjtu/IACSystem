@@ -63,7 +63,7 @@ var func = function (message) {
   else if (message === 'inputConfirm') {
     var data = {
       userId: this.userId,
-      data: this.date,
+      date: this.date,
       hour: this.hour,
       passengerNum: this.passengerNum
     }
