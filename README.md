@@ -2,6 +2,11 @@
 
 # jliacapp
 
+## Login for test
+```
+username: lvhongbin
+passward: 12345687
+```
 ## Server setup
 ```
 cd jliacapp
