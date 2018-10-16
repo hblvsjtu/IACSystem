@@ -4,7 +4,7 @@
  * @date    2018-10-16 16:37:35
  * @version $Id$
  */
-var checkData = function (data) {
+var checkData = function (data, me) {
 	let xhr;
 	if (window.XMLHttpRequest) {
 			// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -22,13 +22,11 @@ var checkData = function (data) {
   xhr.send(data);
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
-			this.loginState = 'loginInSuccess';
-			if (xhr.responseText !== 'OK') {
-				alert(xhr.responseText);
-			}
+			me.loginState = 'startAutoMode';
+			me.responseText = xhr.responseText;
     }
     else {
-			alert(xhr.statusText);
+			// alert(xhr.statusText);
     }
   }
 }

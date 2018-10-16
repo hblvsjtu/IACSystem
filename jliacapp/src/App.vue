@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="欢迎使用吉利智能空调APP" loginState="default"/>
+    <HelloWorld msg="欢迎使用吉利智能空调APP" loginState="default" responseText=""/>
   </div>
 </template>
 

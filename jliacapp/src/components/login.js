@@ -67,7 +67,8 @@ var func = function (message) {
       hour: this.hour,
       passengerNum: this.passengerNum
     }
-    checkData(JSON.stringify(data));
+    var me = this;
+    checkData(JSON.stringify(data), me);
   }
   else if(message === 'inputCancle') {
     this.loginState = 'loginInSuccess';
@@ -77,6 +78,16 @@ var func = function (message) {
   else if(message === 'logout') {
     this.loginState = 'default';
     clearLoginInfo();
+  }
+
+  // 是否开启自动模式
+  else if (message === 'startAutoModeConfirm') {
+		this.loginState = 'startAutoModeConfirm';
+		alert('开启成功！');
+  }
+  else if (message === 'startAutoModeCancle') {
+		this.loginState = 'loginInSuccess';
+		alert('不开启！');
   }
 }
 

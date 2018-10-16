@@ -1,1 +1,1 @@
-路径：./server/python/test.py  参数：{userId:98,data:76,hour:54,passengerNum:32}
+路径：./server/python/test.py  参数：{userId:112,data:34,hour:56,passengerNum:89}
