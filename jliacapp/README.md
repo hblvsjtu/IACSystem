@@ -8,7 +8,7 @@ passward: 12345687
 ## Server setup
 ```
 cd jliacapp
-node httpServer.js
+node ./server/httpServer.js
 ```
 
 ## Project setup

@@ -55,33 +55,32 @@ const server = http.createServer((req, res) => {
 
 	    req.on('end', () => {
 
-	    	// index.html 中的表格参数转换成对象类型
-	    	var paramObj = httpServerTool.parseParam(decodeURIComponent(chunks.toString()));
-	    	for (let key in paramObj) {
-		        console.log(`表格参数： ${key} = ${paramObj[key]}`);
-		    }
+	    	//index.html 中的表格参数转换成对象类型
+	    	// var paramObj = httpServerTool.parseParam(decodeURIComponent(chunks.toString()));
+      //       if (paramObj) {
+      //           for (let key in paramObj) {
+      //               console.log(`表格参数： ${key} = ${paramObj[key]}`);
+      //           }
+      //       }
+
+            // 将post的数据转化成对象
+            var paramObj = JSON.parse(chunks.toString());
+            console.log(paramObj);
+
+            var readResult = function(res) {
+                // 读取结果文件
+                fs.readFile('./server/result/result.txt', 'utf8', (err, data) => {
+                    if (err) throw err;
+                    httpServerTool.ACAORes(res, 'success!\n' + data);
+                });
+            }
 
             // 运行python程序，
             // 第一个参数是python文件的全路径；
             // 第二个参数及后面所有的参数都是python的参数
             console.log('执行python文件前');
-		    httpServerTool.runPython('test.py', JSON.stringify(paramObj));
+		    httpServerTool.runPython(res, readResult, './server/python/test.py', JSON.stringify(paramObj));
             console.log('执行python文件后');
-            
-            // 读取结果文件
-		    fs.readFile('result.txt', 'utf8', (err, data) => {
-              	if (err) throw err;
-      	    	res.writeHead(200, {
-      		        'Content-Type': 'text/html; charset=utf-8'
-      		    });
-      		    res.write('<h1>submitData!</h1>');
-                 res.write('<h2>input' + '<h2>');
-                for (let key in paramObj) {
-                    res.write('<span style="font-size: 15px; color:red;">' + key + " = " + paramObj[key] + '</span><br>');
-                }
-                res.write('<br>执行python文件.....<br><br>');   
-	      	    res.write('The results = <span style="font-size: 25px; color:red;">' + data + '</span><br>');
-            });
 	    });
     }
     else {

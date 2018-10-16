@@ -155,11 +155,11 @@ var parseParam = function parseParam(param) {
 exports.parseParam = parseParam;
 
 //调用python程序
-var runPython = function runPython(fileName) {
+var runPython = function runPython(res, callback, fileName) {
     var exec = require('child_process').exec;
     var len = arguments.length;
     var command = 'python ';
-    for (var i = 0; i < len; i++) {
+    for (var i = 2; i < len; i++) {
         command += ' ' + arguments[i];
     }
     console.log('command = ', command);
@@ -171,7 +171,22 @@ var runPython = function runPython(fileName) {
         }
         if (error) {
             console.info('stderr : ' + stderr);
-        }
+        };
+        callback(res);
     });
 };
 exports.runPython = runPython;
+
+const ACAORes = function(res, str) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); //支持全域名访问，不安全，部署后需要固定限制为客户端网址
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,DELETE'); //支持的http 动作
+    res.setHeader('Access-Control-Allow-Headers', 'x-requested-with,content-type'); //响应头 请按照自己需求添加。
+    res.writeHead(200, {
+        'Content-Type': 'text/plain;charset="utf-8"'
+    })
+    res.write(str);
+    res.end();
+}
+exports.ACAORes = ACAORes;
+
+

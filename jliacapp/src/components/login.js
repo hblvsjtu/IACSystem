@@ -4,6 +4,8 @@
  * @date    2018-10-16 12:09:46
  * @version $Id$
  */
+import {checkData} from './checkData.js';
+
 
 var func = function (message) {
   var userName = '';
@@ -65,9 +67,7 @@ var func = function (message) {
       hour: this.hour,
       passengerNum: this.passengerNum
     }
-    alert(`数据校验\n
-      ${JSON.stringify(data)}`);
-    this.loginState = 'loginInSuccess';
+    checkData(JSON.stringify(data));
   }
   else if(message === 'inputCancle') {
     this.loginState = 'loginInSuccess';
