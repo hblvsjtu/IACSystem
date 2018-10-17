@@ -76,7 +76,7 @@ const server = http.createServer((req, res) => {
 
             var readResult = function(res) {
                 // 读取结果文件
-                fs.readFile('./server/result/result.txt', 'utf8', (err, data) => {
+                fs.readFile('./text.txt', 'utf8', (err, data) => {
                     if (err) throw err;
                     httpServerTool.ACAORes(res, 'success!\n' + data);
                 });
@@ -92,7 +92,7 @@ const server = http.createServer((req, res) => {
                     // 第一个参数是python文件的全路径；
                     // 第二个参数及后面所有的参数都是python的参数
                     console.log('执行python文件前');
-                    httpServerTool.runPython(res, readResult, './server/python/test.py', JSON.stringify(paramObj));
+                    httpServerTool.runPython(res, readResult, './test.py', JSON.stringify(paramObj));
                     console.log('执行python文件后');
                 }
             });

@@ -1,1 +1,0 @@
-路径：./server/python/test.py  参数：{userId:12,data:34,hour:5,passengerNum:6}
