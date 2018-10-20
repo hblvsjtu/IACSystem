@@ -98,6 +98,16 @@ const server = http.createServer((req, res) => {
             });
 	    });
     }
+    // 上传文件到服务器
+    else if (urlReq.match(/^upload/)) {
+    	var fileName = urlReq.replace(/^upload\//, '');
+	    httpServerTool.uploadFile(req, fileName, 'binary');
+    }
+    // 下载文件到客户端
+    else if (urlReq.match(/^download/)) {
+    	var fileName = urlReq.replace(/^download\//, '');
+    	httpServerTool.downloadFile(res, fileName);
+    }
     else {
     	res.writeHead(200, {
 	        'Content-Type': 'text/plain'

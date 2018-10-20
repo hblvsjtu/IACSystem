@@ -189,4 +189,57 @@ const ACAORes = function(res, str) {
 }
 exports.ACAORes = ACAORes;
 
+var uploadFile = function(req, fileName, encode) {
+    let chunks = [];
+    // 打印请求数据包
+    req.on('data', (chunk) => {
+        chunks.push(chunk);
+    });
+    req.on('end', () => {
+        fs.writeFile('./server/input/' + fileName, chunks, encode, function (err) {
+            if(err) {
+            console.error(err);
+            } else {
+               console.log('写入成功');
+           }
+        })
+    });
+}
+exports.uploadFile = uploadFile;
+
+var downloadFile = function (res, fileName) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); //支持全域名访问，不安全，部署后需要固定限制为客户端网址
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,DELETE'); //支持的http 动作
+    res.setHeader('Access-Control-Allow-Headers', 'x-requested-with,content-type'); //响应头 请按照自己需求添加。
+    fs.exists('./server/input/' + fileName, function(exists) {
+        if(exists) {
+            fs.readFile('./server/input/' + fileName, (err, data) => {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    // httpServerTool.ACAORes(res, 'success!\n' + data);
+                    res.writeHead(200, {
+                        'Content-Type': 'multipart/form-data'
+                    })
+                    res.write(data);
+                    res.end();
+                }
+            });
+        }
+        else {
+            // httpServerTool.ACAORes(res, 'success!\n' + data);
+            console.log('this file does not exist');
+            res.setHeader('Content-Type', 'text/html');
+            res.writeHead(200, {
+                'Content-Type': 'text/plain'
+            })
+            res.write('this file does not exist');
+            res.end();
+        }
+    })
+}
+exports.downloadFile = downloadFile;
+
+
 
